@@ -8,13 +8,14 @@ pipeline {
     skipDefaultCheckout true
   }
   stages {
+
     stage('Test') {
       agent {
         kubernetes {
           label 'nodejs-app-inline'
           yaml testPodYaml
         }
-      }
+
 
       steps {
         checkout scm
@@ -29,18 +30,16 @@ pipeline {
           sh '/opt/testcafe/docker/testcafe-docker.sh "chromium --no-sandbox" tests/*.js -r xunit:res.xml'
         }
       }
-
-
-  }
-
-        post {
-        success {
-          stash name: 'app', includes: '*.js, public/**, views/*, Dockerfile'
-        }
-        always {
-          junit 'res.xml'
-        }
+    post {
+      success {
+        stash name: 'app', includes: '*.js, public/**, views/*, Dockerfile'
       }
+      always {
+        junit 'res.xml'
+      }
+    }
+  }
+  }
   stage('Build and Push Image') {
     agent any
     when {
