@@ -28,12 +28,6 @@ stage('Deploy') {
         branch 'master'
       }
       options {
-        timeout(time: 30, unit: 'SECONDS') 
-      }
-      input {
-        message "Should we continue?"
-      }
-      options {
         timeout(time: 60, unit: 'SECONDS') 
       }
       input {
