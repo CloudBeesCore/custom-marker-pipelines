@@ -9,8 +9,7 @@ pipeline {
   }
     stages {    
       stage('Test') {
-      
-      agent {
+       agent {
         kubernetes {
           label 'nodejs-app-inline'
           yaml testPodYaml
@@ -31,6 +30,7 @@ steps {
           sh '/opt/testcafe/docker/testcafe-docker.sh "chromium --no-sandbox" tests/*.js -r xunit:res.xml'
         }
       }
+       }
       post {
         success {
           stash name: 'app', includes: '*.js, public/**, views/*, Dockerfile'
@@ -39,7 +39,7 @@ steps {
           junit 'res.xml'
         }
       }
-           }
+      }    
         stage('Build and Push Image') {
       agent any
       when {
