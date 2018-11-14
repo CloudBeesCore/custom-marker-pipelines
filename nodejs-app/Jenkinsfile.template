@@ -18,7 +18,11 @@ pipeline {
          beforeAgent true
          branch 'master'
       }
-        stage('Deploy') {
+        steps {
+         echo "TODO - build and push image"
+      }
+    }
+stage('Deploy') {
       when {
         beforeAgent true
         branch 'master'
@@ -30,10 +34,8 @@ pipeline {
         echo "Continuing with deployment"
       }
     }
-        steps {
-         echo "TODO - build and push image"
-      }
-    }
+
+    
    }
 }
 
