@@ -63,4 +63,12 @@ stage('Deploy') {
     }
   }
 } //this closes stages
+ post {
+        success {
+          stash name: 'app', includes: '*.js, public/**, views/*, Dockerfile'
+        }
+        always {
+          junit 'res.xml'
+        }
+      }
 }
