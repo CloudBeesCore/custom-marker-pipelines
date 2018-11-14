@@ -22,7 +22,7 @@ pipeline {
          echo "TODO - build and push image"
       }
     }
-stage('Deploy') {
+    stage('Deploy') {
       when {
         beforeAgent true
         branch 'master'
@@ -32,13 +32,11 @@ stage('Deploy') {
       }
       input {
         message "Should we deploy?"
-        submitter "sivasuthan"
         submitterParameter "APPROVER"
       }
       steps {
-    echo "Continuing with deployment - approved by ${APPROVER}"
+        echo "Continuing with deployment - approved by ${APPROVER}"
       }
-    }
     
    }
 }
