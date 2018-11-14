@@ -19,15 +19,16 @@ pipeline {
           stash name: 'app', includes: '*.js, public/**, views/*, Dockerfile'
         }
       }
-          }
-       stage('Build and Push Image') {
-        when {
-         beforeAgent true
-         branch 'master'
+        
+        stage('Build and Push Image') {
+      agent any
+      when {
+        beforeAgent true
+        branch 'master'
       }
-        steps {
-         echo "TODO - build and push image"
-         unstash 'app'
+      steps {
+        echo "TODO - build and push image"
+        unstash 'app'
       }
     }
     stage('Deploy') {
@@ -48,5 +49,6 @@ pipeline {
       }
     }
    }
+     }
 }
 
