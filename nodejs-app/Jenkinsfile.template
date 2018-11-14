@@ -8,14 +8,14 @@ pipeline {
     skipDefaultCheckout true
   }
   stages {
-
+    
     stage('Test') {
       agent {
         kubernetes {
           label 'nodejs-app-inline'
           yaml testPodYaml
         }
-
+      }
 
       steps {
         checkout scm
@@ -38,7 +38,6 @@ pipeline {
         junit 'res.xml'
       }
     }
-  }
   }
   stage('Build and Push Image') {
     agent any
