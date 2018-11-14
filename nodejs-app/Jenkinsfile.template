@@ -71,4 +71,6 @@ stage('Deploy') {
   }
 }
 }
-
+//this closes stages
+}
+}
