@@ -30,13 +30,15 @@ pipeline {
         }
       }
 
-    post {
-      success {
-        stash name: 'app', includes: '*.js, public/**, views/*, Dockerfile'
-      }
-      always {
-        junit 'res.xml'
-      }
+
+  }
+
+  post {
+    success {
+      stash name: 'app', includes: '*.js, public/**, views/*, Dockerfile'
+    }
+    always {
+      junit 'res.xml'
     }
   }
   stage('Build and Push Image') {
@@ -68,9 +70,7 @@ stage('Deploy') {
   }
   steps {
     echo "Continuing with deployment - approved by ${APPROVER}"
+    }
   }
-}
-}
-//this closes stages
-
+} //this closes stages
 }
