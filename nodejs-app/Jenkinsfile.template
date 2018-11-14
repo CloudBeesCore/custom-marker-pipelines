@@ -3,8 +3,8 @@ pipeline {
    options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
   }
-    stage('Test') {
-      steps {
+  stage('Test') {
+    steps {
         container('nodejs') {
           echo 'Hello World!'   
           sh 'node --version'
