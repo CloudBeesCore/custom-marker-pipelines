@@ -33,11 +33,18 @@ stage('Deploy') {
       input {
         message "Should we continue?"
       }
+      options {
+        timeout(time: 60, unit: 'SECONDS') 
+      }
+      input {
+        message "Should we deploy?"
+        submitter "sivasuthan"
+        submitterParameter "APPROVER"
+      }
       steps {
         echo "Continuing with deployment"
       }
     }
-
     
    }
 }
