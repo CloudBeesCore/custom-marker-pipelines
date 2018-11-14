@@ -51,6 +51,9 @@ steps {
         unstash 'app'
       }
     }
+    }
+    
+    
     stage('Deploy') {
       agent any
       when {
@@ -71,4 +74,4 @@ steps {
    }
   
 
-
+}
